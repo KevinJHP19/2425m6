@@ -26,7 +26,7 @@ while(intentos>3 && numeroadivinar !=numerointroducido){
     }else{
         console.log('El numero es igual')
     }
-    intentos= intentos + 1
+    intentos++
 
     
 }
