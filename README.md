@@ -2,8 +2,8 @@
 
 ## Sesiones
 
-[ ] Sesion 0 : Entorno de desarrollo
-[ ] Sesion 1 : Primero scripts
+- [x] Sesion 0 : Entorno de desarrollo
+- [ ] Sesion 1 : Primero scripts
 
 ## Ejercicios
   - Ejercicio 1:
