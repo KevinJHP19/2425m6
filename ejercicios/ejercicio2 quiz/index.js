@@ -1,6 +1,7 @@
 
 console.log("Hola")
-
+let numerorandom = Math.floor(Math.random() * 10);
+    console.log(numerorandom);
 
 let quiz = [
     {
@@ -104,17 +105,27 @@ let quiz = [
         ]
     }
 ];
-
+ 
 for(let i=0;i<quiz.length;i++){
+    
+    let numerorandom = Math.floor(Math.random() * 10);
+    console.log(numerorandom);
 
-    document.querySelector('#question').innerHTML=quiz[i].pregunta;
-    document.querySelector('#answer1').innerHTML=quiz[i].respuestas[0];
-    document.querySelector('#answer2').innerHTML=quiz[i].respuestas[1];
-    document.querySelector('#answer3').innerHTML=quiz[i].respuestas[2];
-    document.querySelector('#answer4').innerHTML=quiz[i].respuestas[3];
-
-
+    let listahtml = `<h2 id="question" class="mt-4">${quiz[numerorandom].pregunta}</h2>
+      <div id="answers" class="d-grid gap-2 mt-3">
+        <button class="btn btn-primary" id="answer1">${quiz[numerorandom].respuestas[0]}</button>
+        <button class="btn btn-primary" id="answer2">${quiz[numerorandom].respuestas[1]}</button>
+        <button class="btn btn-primary" id="answer3">${quiz[numerorandom].respuestas[2]}</button>
+        <button class="btn btn-primary" id="answer4">${quiz[numerorandom].respuestas[3]}</button>
+      </div>
+      <div id="result" class="alert mt-3" style="display: none;"></div>
+      <button id="next-question" class="btn btn-secondary mt-3">Siguiente Pregunta</button>
+    </div>
+    `
+    document.querySelector('#quiz').innerHTML =listahtml;
 }
+
+
 
 
 
