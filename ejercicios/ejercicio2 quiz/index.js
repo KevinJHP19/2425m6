@@ -105,7 +105,8 @@ let quiz = [
         ]
     }
 ];
- 
+
+
 for(let i=0;i<quiz.length;i++){
     
     let numerorandom = Math.floor(Math.random() * 10);
@@ -119,11 +120,21 @@ for(let i=0;i<quiz.length;i++){
         <button class="btn btn-primary" id="answer4">${quiz[numerorandom].respuestas[3]}</button>
       </div>
       <div id="result" class="alert mt-3" style="display: none;"></div>
-      <button id="next-question" class="btn btn-secondary mt-3">Siguiente Pregunta</button>
+      <button id="next-question" class="btn btn-secondary mt-3" style="display: none;">Siguiente Pregunta</button>
     </div>
     `
     document.querySelector('#quiz').innerHTML =listahtml;
 }
+
+
+    const btnsiguiente = document.querySelector("#next-question") 
+btnsiguiente.addEventListener("click", )
+
+ 
+ 
+
+
+
 
 
 
