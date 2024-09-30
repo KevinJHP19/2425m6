@@ -1,12 +1,7 @@
-
-console.log("Hola")
-let numerorandom = Math.floor(Math.random() * 10);
-    console.log(numerorandom);
-
 let quiz = [
     {
         pregunta: "¿Cuál es la capital de Perú?",
-        correcta: 1,
+        correcta: 0,
         respuestas: [
             "Lima",
             "Bogotá",
@@ -16,27 +11,27 @@ let quiz = [
     },
     {
         pregunta: "¿Cuál es la capital de España?",
-        correcta: 1,
+        correcta: 3,
         respuestas: [
-            "Madrid",
+            "Roma",
             "Lisboa",
             "París",
-            "Roma"
+            "Madrid"
         ]
     },
     {
         pregunta: "¿Cuál es la capital de Colombia?",
         correcta: 1,
         respuestas: [
-            "Bogotá",
             "Caracas",
+            "Bogotá",
             "Lima",
             "Quito"
         ]
     },
     {
         pregunta: "¿Cuál es la capital de Argentina?",
-        correcta: 1,
+        correcta: 0,
         respuestas: [
             "Buenos Aires",
             "Montevideo",
@@ -46,7 +41,7 @@ let quiz = [
     },
     {
         pregunta: "¿Cuál es la capital de Chile?",
-        correcta: 1,
+        correcta: 0,
         respuestas: [
             "Santiago",
             "Lima",
@@ -56,7 +51,7 @@ let quiz = [
     },
     {
         pregunta: "¿Cuál es la capital de Ecuador?",
-        correcta: 1,
+        correcta: 0,
         respuestas: [
             "Quito",
             "Lima",
@@ -66,7 +61,7 @@ let quiz = [
     },
     {
         pregunta: "¿Cuál es la capital de Brasil?",
-        correcta: 1,
+        correcta: 0,
         respuestas: [
             "Brasilia",
             "Río de Janeiro",
@@ -86,7 +81,7 @@ let quiz = [
     },
     {
         pregunta: "¿Cuál es la capital de Paraguay?",
-        correcta: 1,
+        correcta: 0,
         respuestas: [
             "Asunción",
             "Montevideo",
@@ -96,39 +91,80 @@ let quiz = [
     },
     {
         pregunta: "¿Cuál es la capital de Venezuela?",
-        correcta: 1,
+        correcta: 2,
         respuestas: [
-            "Caracas",
-            "Bogotá",
             "Quito",
+            "Bogotá",
+            "Caracas",
             "Lima"
         ]
     }
 ];
 
+let indicePregunta = 0; // Índice para rastrear la pregunta actual
 
-for(let i=0;i<quiz.length;i++){
-    
-    let numerorandom = Math.floor(Math.random() * 10);
-    console.log(numerorandom);
+// Mostrar pregunta
+function mostrarpreguntas() {
+    // Verificar si ya no hay más preguntas
+    if (indicePregunta >= quiz.length) {
+        document.querySelector('#quiz').innerHTML = '<h2>¡No hay más preguntas disponibles!</h2>';
+        return; // Detener la función si ya no hay preguntas
+    }
 
-    let listahtml = `<h2 id="question" class="mt-4">${quiz[numerorandom].pregunta}</h2>
-      <div id="answers" class="d-grid gap-2 mt-3">
-        <button class="btn btn-primary" id="answer1">${quiz[numerorandom].respuestas[0]}</button>
-        <button class="btn btn-primary" id="answer2">${quiz[numerorandom].respuestas[1]}</button>
-        <button class="btn btn-primary" id="answer3">${quiz[numerorandom].respuestas[2]}</button>
-        <button class="btn btn-primary" id="answer4">${quiz[numerorandom].respuestas[3]}</button>
-      </div>
-      <div id="result" class="alert mt-3" style="display: none;"></div>
-      <button id="next-question" class="btn btn-secondary mt-3" style="display: none;">Siguiente Pregunta</button>
-    </div>
-    `
-    document.querySelector('#quiz').innerHTML =listahtml;
+    // Seleccionar la pregunta según el índice
+    let preguntaSeleccionada = quiz[indicePregunta];
+
+    // Guardar la respuesta correcta en una variable
+    let respuestaCorrecta = preguntaSeleccionada.correcta;
+
+    // Generar el HTML para la pregunta y sus respuestas
+    let listahtml = `
+        <h2 id="question" class="mt-4">${preguntaSeleccionada.pregunta}</h2>
+        <div id="answers" class="d-grid gap-2 mt-3">
+            <button class="btn btn-primary" id="answer1">${preguntaSeleccionada.respuestas[0]}</button>
+            <button class="btn btn-primary" id="answer2">${preguntaSeleccionada.respuestas[1]}</button>
+            <button class="btn btn-primary" id="answer3">${preguntaSeleccionada.respuestas[2]}</button>
+            <button class="btn btn-primary" id="answer4">${preguntaSeleccionada.respuestas[3]}</button>
+        </div>
+        <div id="result" class="alert mt-3" style="display: none;"></div>
+        <button id="next-question" class="btn btn-secondary mt-3">Siguiente Pregunta</button>
+    `;
+
+    // Inyectar el HTML generado
+    document.querySelector('#quiz').innerHTML = listahtml;
+
+    // Añadir los eventos para las respuestas
+    document.querySelectorAll('#answers button').forEach((button, index) => {
+        button.addEventListener('click', () => seleccionar(index, respuestaCorrecta));
+    });
+
+    // Añadir el evento para la siguiente pregunta
+    document.querySelector('#next-question').addEventListener('click', () => {
+        indicePregunta++; // Avanzar al siguiente índice
+        mostrarpreguntas(); // Mostrar la siguiente pregunta
+    });
 }
 
+// Seleccionar una respuesta y verificar si es correcta
+function seleccionar(indiceSeleccionado, respuestaCorrecta) {
+    let resultDiv = document.querySelector('#result');
 
-    const btnsiguiente = document.querySelector("#next-question") 
-btnsiguiente.addEventListener("click", )
+    // Verificar si la respuesta seleccionada es la correcta
+    if (indiceSeleccionado === respuestaCorrecta) {
+        resultDiv.textContent = '¡Correcto!';
+        resultDiv.className = 'alert alert-success ';
+    } else {
+        resultDiv.textContent = 'Incorrecto. Inténtalo de nuevo.';
+        resultDiv.className = 'alert alert-danger ';
+    }
+
+    // Mostrar el resultado
+    resultDiv.style.display = 'block';
+}
+
+mostrarpreguntas();
+
+    
 
  
  
