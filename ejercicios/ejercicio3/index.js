@@ -101,17 +101,12 @@ let quiz = [
     }
 ];
 
-let indicePregunta = 0; // Índice para rastrear la pregunta actual
-
-// Mostrar pregunta
+// Mostrar pregunta aleatoria
 function mostrarpreguntas() {
-    // Verificar si ya no hay más preguntas
-    if (indicePregunta >= quiz.length) {
-        document.querySelector('#quiz').innerHTML = '<h2>¡No hay más preguntas disponibles!</h2>';
-        
-    }
-
-    // Seleccionar la pregunta según el índice
+    // Seleccionar un índice aleatorio para la pregunta
+    let indicePregunta = Math.floor(Math.random() * quiz.length);
+    
+    // Seleccionar la pregunta según el índice aleatorio
     let preguntaSeleccionada = quiz[indicePregunta];
 
     // Guardar la respuesta correcta en una variable
@@ -134,14 +129,14 @@ function mostrarpreguntas() {
     document.querySelector('#quiz').innerHTML = listahtml;
 
     // Añadir los eventos para las respuestas
-    document.querySelectorAll('#answers button').forEach((button, index) => {
-        button.addEventListener('click', () => seleccionar(index, respuestaCorrecta));
-    });
+    document.getElementById('answer1').addEventListener('click', () => seleccionar(0, respuestaCorrecta));
+    document.getElementById('answer2').addEventListener('click', () => seleccionar(1, respuestaCorrecta));
+    document.getElementById('answer3').addEventListener('click', () => seleccionar(2, respuestaCorrecta));
+    document.getElementById('answer4').addEventListener('click', () => seleccionar(3, respuestaCorrecta));
 
     // Añadir el evento para la siguiente pregunta
-    document.querySelector('#next-question').addEventListener('click', () => {
-        indicePregunta++; // Avanzar al siguiente índice
-        mostrarpreguntas(); // Mostrar la siguiente pregunta
+    document.getElementById('next-question').addEventListener('click', () => {
+        mostrarpreguntas(); // Mostrar otra pregunta aleatoria
     });
 }
 
@@ -152,17 +147,76 @@ function seleccionar(indiceSeleccionado, respuestaCorrecta) {
     // Verificar si la respuesta seleccionada es la correcta
     if (indiceSeleccionado === respuestaCorrecta) {
         resultDiv.textContent = '¡Correcto!';
-        resultDiv.className = 'alert alert-success ';
-        Element.classlist.replace
+        resultDiv.className = 'alert alert-success';
+        moverjugador(true)
     } else {
         resultDiv.textContent = 'Incorrecto. Inténtalo de nuevo.';
-        resultDiv.className = 'alert alert-danger ';
+        resultDiv.className = 'alert alert-danger';
+        moverjugador(false)
     }
-
+    
+    
     // Mostrar el resultado
     resultDiv.style.display = 'block';
 }
+    // Crear las variables
+let casillas = document.querySelectorAll('.div');  
+let encerts = 0;
+let errors = 0;
+let posicioActual = 1;
 
-mostrarpreguntas();
+// Mostrar el estado inicial en la consola
+console.log('Posición inicial:', posicioActual, 'Encerts:', encerts, 'Errors:', errors);
+
+// Función para mover al jugador
+function moverjugador(adelante) {
+    // Si la respuesta es correcta
+    if (adelante) {
+        posicioActual += 1;  // Avanza una casilla
+        encerts += 1;        // Incrementa los aciertos
+        console.log('¡Respuesta correcta! Nueva posición:', posicioActual, 'Encerts:', encerts, 'Errors:', errors);
+
+        // Cambiar el color de la casilla actual y la anterior
+        if (posicioActual > 1) {
+            casillas[posicioActual - 2].classList.add('div-gray');  // La anterior se vuelve gris
+        }
+        casillas[posicioActual - 1].classList.add('div-point');      // La actual se vuelve roja
+
+    // Si la respuesta es incorrecta
+    } else {
+        // Retroceder 3 casillas
+        posicioActual -= 3;  
+        
+        // Asegurarse de que no sea menor que 1
+        if (posicioActual < 1) {
+            posicioActual = 1;
+        }
+
+        errors += 1;  // Incrementa los errores
+        console.log('¡Respuesta incorrecta! Nueva posición:', posicioActual, 'Encerts:', encerts, 'Errors:', errors);
+
+        // Limpiar las clases de todas las casillas y establecer la casilla actual
+        for (let i = 0; i < casillas.length; i++) {
+            casillas[i].classList.remove('div-gray', 'div-point');  // Eliminar clases de todas las casillas
+        }
+        casillas[posicioActual - 1].classList.add('div-point');  // La actual se vuelve roja
+    }
+
+    comprobarfinaldeljuego();  // Verificar si el juego ha terminado
+}
+
+// Función para comprobar si el juego ha terminado
+function comprobarfinaldeljuego() {
+    if (posicioActual === 20) {
+        console.log(`¡Has llegado a la casilla 20! Felicidades. Aciertos: ${encerts}, Errores: ${errors}`);
+        document.getElementById('next-question').style.display = "none";  // Desactivar el botón de "Siguiente Pregunta"
+    }
+}
+
+    
+    mostrarpreguntas();
+
+
+
 
 
