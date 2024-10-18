@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <div id="resultat">
+        
+    </div>
+
+
+
+
+
+
+
+    <script>
+        
+        
+        let array = [2,2,4,35,4,1,21,32,12,32,25,35,10,15,13];
+        let div = document.querySelector("#resultat")
+        function numerosparalelos(){
+
+
+            let arrayordernado =array.sort()
+            div.innerHTML += 'Este es el array [ ' + arrayordernado + ']' + '<br>'
+            console.log ("Los numeros paralelos son: ")
+            div.innerHTML += 'Los numeros paralelos son:  '
+            for(let i = 0 ; i <arrayordernado.length;i++){
+
+                let resto = arrayordernado[i] % arrayordernado[i+1];
+                if(resto == 0){
+                    console.log (arrayordernado[i]);
+                    let inyectar = arrayordernado[i];
+                    div.innerHTML += "  " +  inyectar
+                }
+
+
+                
+
+        }
+           
+
+                
+
+
+    }
+      numerosparalelos()  
+        
+
+
+
+
+    </script>
+</body>
+</html>
