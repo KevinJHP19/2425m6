@@ -24,3 +24,9 @@ document.getElementById('generarnumero').addEventListener('click', function(even
 })
 
 //Ejercicio 2
+
+
+let texto = document.querySelector('#texto');
+
+
+    console.log(texto)

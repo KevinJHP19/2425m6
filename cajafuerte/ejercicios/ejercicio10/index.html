@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="entrada">
+    <button id="botonValidar">Validar</button>
+
+    <script>
+
+        let divinput=document.querySelector('#entrada')
+
+        let btn = document.querySelector('#botonValidar');
+
+        btn.addEventListener('click', validar);
+
+        function validar(){
+
+            if(divinput === ""){
+                console.log('Este input esta vacio')
+                divinput.setAttribute('placeholder','Este input esta vacio')
+            }else{
+                console.log('Error esta construido')
+                divinput.setAttribute('placeholder','Error esta construido')
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>

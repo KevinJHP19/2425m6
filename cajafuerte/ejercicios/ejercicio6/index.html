@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .actiu {
+          color: red;
+          font-weight: bold;
+        }
+      </style>
+</head>
+<body>
+    
+    <div id="miElement">Aquest és l'element</div>
+    <button id="toggleClass">Canviar Classe</button>
+    <script >
+        console.log('hola')
+
+        let btn = document.querySelector('#toggleClass')
+
+        let divclass= document.querySelector('#miElement')
+
+        btn.addEventListener('click', añadirquitar)
+
+
+        function añadirquitar(){
+            
+            divclass.classList.toggle('actiu')
+
+
+        }
+
+    </script>
+</body>
+</html>

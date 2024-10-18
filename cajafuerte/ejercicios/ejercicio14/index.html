@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img id="imatge" src="imatge1.jpg" alt="Imatge inicial">
+<button id="eliminarAlt">Eliminar Atribut `alt`</button>
+
+<script>
+
+    let btn = document.querySelector('#eliminarAlt')
+
+    
+
+    btn.addEventListener('click', eliminar)
+
+    function eliminar(){
+
+        document.querySelector('imatge').removeAttribute('alt')
+
+        let atributos = document.querySelector('imatge').hasAttribute('src')
+
+        if(atributos == false){
+            console.log('Se elimino el alt')
+
+        }else{
+            console.log('Sigue el alt')
+        }
+        
+    }
+</script>
+</body>
+</html>

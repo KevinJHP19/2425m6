@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="pregunta"></div>
+    <div id="resposta"></div>
+
+
+    <script>
+        let quiz = [
+            ["8 + 10","5 * 20","40 - 25"],
+            ["18","100","15"]
+
+        ];
+        let divrpta = document.querySelector('#resposta')
+
+        let divques = document.querySelector('#pregunta')
+
+        divques.innerHTML = 'Pregunta: Cuanto es ' + quiz[0][1]
+        divrpta.innerHTML = 'Respuesta: ' +  quiz[1][1]
+
+
+
+    </script>
+</body>
+</html>

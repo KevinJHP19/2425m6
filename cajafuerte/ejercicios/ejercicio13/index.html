@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img id="imatge" src="https://aguacatec.es/wp-content/uploads/2023/10/e5a978b8-6772-4c85-a50e-15581af7d483_clipdrop-cleanup-jpeg.webp" alt="Imatge inicial">
+    <div id="resultat"></div>
+    <button id="mostrarSrc">Mostrar Atribut `src`</button>
+
+    <script>
+        let btn = document.querySelector('#mostrarSrc')
+        let resultado = document.querySelector('#imatge').getAttribute('src')
+
+        let divresultado = document.querySelector('#resultat')
+
+        btn.addEventListener('click',mostrar)
+
+
+        function mostrar(){
+            divresultado.innerHTML = resultado
+        }
+    </script>
+</body>
+</html>
