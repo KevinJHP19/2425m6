@@ -1,0 +1,8 @@
+<script>
+    function buscarcoincidencias(cadena, patron){
+        let resultado = cadena.match(patron);
+        return(resultado) 
+    }
+
+    console.log(buscarcoincidencias("Hola 123, adeu 456",/\d+/g));
+</script>

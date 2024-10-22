@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Sesion 6 - Objetos nativos de js</h1>
+
+
+    <script>
+        console.log("Sesion 6")
+        //propiedades de un objeto math
+        console.log(Math.PI);
+        console.log('Valor absoluto de -5: ', Math.abs(-5));
+        console.log('La raiz cuadrada de 4' ,  Math.sqrt(4));
+        console.log("longitud de hola caracola: ", "hola caracola".length);
+        console.log("hola"[3]);
+        console.log("Elefante".charAt(2));
+        console.log("Posicion de la primera e: ", "Elefante".indexOf("e"));
+        console.log("Mi cumple: 13 de abril".substr(11,2));
+        console.log("Extraigo el mes", "13/04/1973".split("/"));
+        console.log("Cuento palabras: ","Esto es un texto largo".split(" "));
+        console.log("Hola familia".includes('familia'));
+        console.log("Hola familia familia".search("familia"));
+
+        let email = "   huaman@fpllefia.com     "
+        console.log("Elimina los espacios ",email.trim());
+        console.log(String.fromCodePoint(120));
+        console.log("x".codePointAt(0));
+    </script>
+</body>
+</html>
